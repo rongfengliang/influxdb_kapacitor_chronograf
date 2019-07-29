@@ -1,5 +1,11 @@
 version: "3"
 services:
+    grafana:
+     image: grafana/grafana
+     ports:
+     - "3000:3000"
+     volumes: 
+     - "./defaults.ini:/usr/share/grafana/conf/defaults.ini"
     web:
       image: openresty/openresty:alpine
       ports: 
@@ -8,10 +14,10 @@ services:
       image: influxdb
       ports: 
       - "8086:8086"
-    # telegraf:
-    #   image: telegraf
-    #   volumes: 
-    #   - "./telegraf.conf:/etc/telegraf/telegraf.conf"
+    telegraf:
+      image: telegraf
+      volumes: 
+      - "./telegraf.conf:/etc/telegraf/telegraf.conf"
     chronograf:
       image: chronograf
       ports:
